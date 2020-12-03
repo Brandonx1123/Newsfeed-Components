@@ -86,7 +86,8 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+
 ];
 
 /*
@@ -103,6 +104,8 @@ const data = [
     <span class="expandButton">+</span>
   </div>
 
+
+
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
@@ -114,3 +117,61 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker (articles ){
+
+  const article = document.createElement ('div');
+  const articleTitle = document.createElement ('h2');
+  const articleDate = document.createElement ('p');
+  const para1 = document.createElement ('p');
+  const para2 = document.createElement ('p');
+  const para3 = document.createElement ('p');
+  const expandButton = document.createElement ('span');
+
+articleTitle.textContent = articles.title;
+articleDate.textContent = articles.date;
+para1.textContent = articles.firstParagraph;
+para2.textContent = articles.secondParagraph;
+para3.textContent = articles.thirdParagraph;
+expandButton.textContent = '+';
+
+article.appendChild(articleTitle);
+article.appendChild(articleDate);
+article.appendChild(para1);
+article.appendChild(para2);
+article.appendChild(para3);
+article.appendChild(expandButton);
+
+article.classList.add('article');
+articleDate.classList.add('date');
+expandButton.classList.add('expandButton');
+
+// console.log(expandButton);
+
+console.log(article);
+  expandButton.addEventListener ('click', (event) => {
+      article.classList.toggle('article-open');
+    });
+  return article;
+};
+// articleMaker(data);
+
+const newArticles = document.querySelector('.articles')
+
+data.forEach((article) => {
+  let info = articleMaker(article)
+  newArticles.appendChild(info)
+})
+
+const brandonArticle =articleMaker({
+  title: 'brandon',
+  date: 'today',
+  firstParagraph: 'new shit',
+  secondParagraph: 'second new shit',
+  thirdParagraph: 'third new shit '
+})
+newArticles.appendChild(brandonArticle);
+
+
+console.log(newArticle);
+
